@@ -2,21 +2,21 @@ version: "3.1"
 services:
     mariadb:
       image: mariadb:latest
-      container_name: esgi-symfony-mariadb
+      container_name: esgi-symfony-cours-mariadb
       working_dir: /application
       volumes:
         - .:/application
       environment:
         - MYSQL_ROOT_PASSWORD=root
-        - MYSQL_DATABASE=esgi-symfony
-        - MYSQL_USER=esgi-symfony
-        - MYSQL_PASSWORD=esgi-symfony
+        - MYSQL_DATABASE=esgi-symfony-cours
+        - MYSQL_USER=esgi-symfony-cours
+        - MYSQL_PASSWORD=esgi-symfony-cours
       ports:
         - "8163:3306"
 
     webserver:
       image: nginx:stable
-      container_name: esgi-symfony-webserver
+      container_name: esgi-symfony-cours-webserver
       working_dir: /application
       volumes:
           - .:/application
@@ -27,7 +27,7 @@ services:
     php-fpm:
       build:
         context: engine/php-fpm
-      container_name: esgi-symfony-php-fpm
+      container_name: esgi-symfony-cours-php-fpm
       working_dir: /application
       volumes:
         - .:/application
@@ -35,7 +35,7 @@ services:
 
     phpmyadmin:
       image: phpmyadmin/phpmyadmin
-      container_name: esgi-symfony-phpmyadmin
+      container_name: esgi-symfony-cours-phpmyadmin
       links:
         - mariadb:db
       ports:

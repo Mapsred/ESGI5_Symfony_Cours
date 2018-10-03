@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+    Liste de mes articles <br>
+
+    {% for article in articles %}
+        {{ article.title }}
+    {% else %}
+        Aucun article
+    {% endfor %}
+{% endblock %}

@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Article
 {
     /**
-     * @var integer
+     * @var integer $id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Id()
@@ -22,23 +22,30 @@ class Article
     private $id;
 
     /**
-     * @var string
+     * @var string $title
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank(message="Veuillez choisir un titre !")
      */
     private $title;
 
     /**
-     * @var string
+     * @var string $slug
      * @ORM\Column(type="string", nullable=true)
      */
     private $slug = null;
 
     /**
-     * @var string
+     * @var string $content
      * @ORM\Column(type="text")
      */
     private $content = "";
+
+    /**
+     * @var Tag $tag
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tag")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tag;
 
     /**
      * @return int
@@ -102,6 +109,18 @@ class Article
     public function setContent(string $content): Article
     {
         $this->content = $content;
+        return $this;
+    }
+
+    public function getTag(): ?Tag
+    {
+        return $this->tag;
+    }
+
+    public function setTag(?Tag $tag): self
+    {
+        $this->tag = $tag;
+
         return $this;
     }
 }

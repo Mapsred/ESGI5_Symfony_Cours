@@ -19,7 +19,7 @@
                 <td>
                     <a class="btn btn-primary" href="{{ path('tag_show', {'id': tag.id}) }}">Show</a>
                     <a class="btn btn-warning" href="{{ path('tag_edit', {'id': tag.id}) }}">Edit</a>
-                    {{ include('tag/_delete_form.html.twig', {'tag': tag}) }}
+                    {{ include('Back/Tag/_delete_form.html.twig', {'tag': tag}) }}
                 </td>
             </tr>
         {% else %}

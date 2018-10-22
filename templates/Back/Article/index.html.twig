@@ -25,7 +25,7 @@
                 <td>
                     <a class="btn btn-primary" href="{{ path('article_show', {'id': article.id}) }}">Show</a>
                     <a class="btn btn-warning" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
-                    {{ include('article/_delete_form.html.twig', {'article': article}) }}
+                    {{ include('Back/Article/_delete_form.html.twig', {'article': article}) }}
                 </td>
             </tr>
         {% else %}

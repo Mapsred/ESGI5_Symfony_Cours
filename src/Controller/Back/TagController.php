@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Back;
 
 use App\Entity\Tag;
 use App\Form\TagType;
@@ -17,14 +17,18 @@ class TagController extends AbstractController
 {
     /**
      * @Route("/", name="tag_index", methods="GET")
+     * @param TagRepository $tagRepository
+     * @return Response
      */
     public function index(TagRepository $tagRepository): Response
     {
-        return $this->render('tag/index.html.twig', ['tags' => $tagRepository->findAll()]);
+        return $this->render('Back/Tag/index.html.twig', ['tags' => $tagRepository->findAll()]);
     }
 
     /**
      * @Route("/new", name="tag_new", methods="GET|POST")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -40,7 +44,7 @@ class TagController extends AbstractController
             return $this->redirectToRoute('tag_index');
         }
 
-        return $this->render('tag/new.html.twig', [
+        return $this->render('Back/Tag/new.html.twig', [
             'tag' => $tag,
             'form' => $form->createView(),
         ]);
@@ -48,14 +52,19 @@ class TagController extends AbstractController
 
     /**
      * @Route("/{id}", name="tag_show", methods="GET")
+     * @param Tag $tag
+     * @return Response
      */
     public function show(Tag $tag): Response
     {
-        return $this->render('tag/show.html.twig', ['tag' => $tag]);
+        return $this->render('Back/Tag/show.html.twig', ['tag' => $tag]);
     }
 
     /**
      * @Route("/{id}/edit", name="tag_edit", methods="GET|POST")
+     * @param Request $request
+     * @param Tag $tag
+     * @return Response
      */
     public function edit(Request $request, Tag $tag): Response
     {
@@ -68,7 +77,7 @@ class TagController extends AbstractController
             return $this->redirectToRoute('tag_edit', ['id' => $tag->getId()]);
         }
 
-        return $this->render('tag/edit.html.twig', [
+        return $this->render('Back/Tag/edit.html.twig', [
             'tag' => $tag,
             'form' => $form->createView(),
         ]);
@@ -76,6 +85,9 @@ class TagController extends AbstractController
 
     /**
      * @Route("/{id}", name="tag_delete", methods="DELETE")
+     * @param Request $request
+     * @param Tag $tag
+     * @return Response
      */
     public function delete(Request $request, Tag $tag): Response
     {

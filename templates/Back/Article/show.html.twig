@@ -23,6 +23,10 @@
                 <th>Content</th>
                 <td>{{ article.content }}</td>
             </tr>
+            <tr>
+                <th>Tag</th>
+                <td>{{ article.tag }}</td>
+            </tr>
         </tbody>
     </table>
 
@@ -33,5 +37,5 @@
 
     <a class="btn btn-warning" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
 
-    {{ include('article/_delete_form.html.twig') }}
+    {{ include('Back/Article/_delete_form.html.twig') }}
 {% endblock %}

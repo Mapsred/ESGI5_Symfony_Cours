@@ -7,16 +7,19 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ tag.id }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ tag.id }}</td>
+        </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('tag_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('tag_index') }}">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        Back to list
+    </a>
 
-    <a href="{{ path('tag_edit', {'id': tag.id}) }}">edit</a>
+    <a class="btn btn-warning" href="{{ path('tag_edit', {'id': tag.id}) }}">Edit</a>
 
     {{ include('tag/_delete_form.html.twig') }}
 {% endblock %}

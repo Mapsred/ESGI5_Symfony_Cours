@@ -112,11 +112,18 @@ class Article
         return $this;
     }
 
+    /**
+     * @return Tag|null
+     */
     public function getTag(): ?Tag
     {
         return $this->tag;
     }
 
+    /**
+     * @param Tag|null $tag
+     * @return Article
+     */
     public function setTag(?Tag $tag): self
     {
         $this->tag = $tag;

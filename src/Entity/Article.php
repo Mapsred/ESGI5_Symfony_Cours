@@ -8,16 +8,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Article
  *
- * @ORM\Entity
- * @ORM\Table
+ * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
+ * @ORM\Table(name="article")
  */
 class Article
 {
     /**
      * @var integer
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue()
-     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Id()
      */
     private $id;
 

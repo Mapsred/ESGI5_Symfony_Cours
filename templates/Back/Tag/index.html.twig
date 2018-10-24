@@ -9,6 +9,7 @@
         <thead>
         <tr>
             <th>Id</th>
+            <th>Name</th>
             <th>actions</th>
         </tr>
         </thead>
@@ -16,6 +17,7 @@
         {% for tag in tags %}
             <tr>
                 <td>{{ tag.id }}</td>
+                <td>{{ tag.name }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ path('tag_show', {'id': tag.id}) }}">Show</a>
                     <a class="btn btn-warning" href="{{ path('tag_edit', {'id': tag.id}) }}">Edit</a>

@@ -44,7 +44,7 @@ class Article
 
     /**
      * @var ArrayCollection $tags
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="articles")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="articles", cascade={"persist"})
      */
     private $tags;
 

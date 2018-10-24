@@ -24,8 +24,8 @@
                 <td>{{ article.content }}</td>
             </tr>
             <tr>
-                <th>Tag</th>
-                <td>{{ article.tag }}</td>
+                <th>Tags</th>
+                <td>{{ article.tags|join(',') }}</td>
             </tr>
         </tbody>
     </table>

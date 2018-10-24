@@ -14,7 +14,7 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('tag', null, [
+            ->add('tags', null, [
                 'attr' => [
                     'class' => 'select2'
                 ]

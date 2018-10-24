@@ -20,12 +20,14 @@ class Tag
     private $id;
 
     /**
+     * @var string $name
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="tag")
+     * @var ArrayCollection $articles
+     * @ORM\ManyToMany(targetEntity="App\Entity\Article", mappedBy="tags")
      */
     private $articles;
 
@@ -65,14 +67,6 @@ class Tag
     }
 
     /**
-     * @return null|string
-     */
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
-    /**
      * @return Collection|Article[]
      */
     public function getArticles(): Collection
@@ -88,7 +82,7 @@ class Tag
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
-            $article->setTag($this);
+            $article->addTag($this);
         }
 
         return $this;
@@ -102,12 +96,17 @@ class Tag
     {
         if ($this->articles->contains($article)) {
             $this->articles->removeElement($article);
-            // set the owning side to null (unless already changed)
-            if ($article->getTag() === $this) {
-                $article->setTag(null);
-            }
+            $article->removeTag($this);
         }
 
         return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

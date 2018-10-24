@@ -12,7 +12,7 @@
                 <th>Title</th>
                 <th>Slug</th>
                 <th>Content</th>
-                <th>Tag</th>
+                <th>Tags</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -23,7 +23,7 @@
                 <td>{{ article.title }}</td>
                 <td>{{ article.slug }}</td>
                 <td>{{ article.content }}</td>
-                <td>{{ article.tag }}</td>
+                <td>{{ article.tags|join(',') }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ path('article_show', {'id': article.id}) }}">Show</a>
                     <a class="btn btn-warning" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>

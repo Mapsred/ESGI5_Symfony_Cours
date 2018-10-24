@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Back;
+namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -8,11 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/default", name="default")
+     * @Route("/", name="index")
      */
     public function index()
     {
-        return $this->render('Back/Default/index.html.twig', [
+        return $this->render('Default/index.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
     }

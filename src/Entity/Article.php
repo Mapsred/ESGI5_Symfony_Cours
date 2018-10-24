@@ -133,6 +133,21 @@ class Article
     }
 
     /**
+     * @param ArrayCollection|array|Tag[] $tags
+     * @return Article
+     */
+    public function setTags($tags): self
+    {
+        if (is_array($tags)) {
+            $tags = new ArrayCollection($tags);
+        }
+
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
      * @param Tag $tag
      * @return Article
      */

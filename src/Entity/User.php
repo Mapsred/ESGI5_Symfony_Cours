@@ -33,6 +33,9 @@ class User implements UserInterface
      */
     private $password;
 
+    /** @var string $plainPassword */
+    private $plainPassword;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,7 +111,26 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+         $this->plainPassword = null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     * @return User
+     */
+    public function setPlainPassword(string $plainPassword): User
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
     }
 
     public function __toString()

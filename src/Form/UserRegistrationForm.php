@@ -30,7 +30,8 @@ class UserRegistrationForm extends AbstractType
                 "second_options" => ['label' => 'label.confirm_password', 'attr' => [
                     'placeholder' => 'label.confirm_password'
                 ]],
-            ]);
+            ])
+        ;
     }
 
     /**
@@ -40,6 +41,7 @@ class UserRegistrationForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'csrf_token_id' => 'authenticate',
         ]);
 
     }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\LoginForm;
+use App\Form\UserRegistrationForm;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,16 +28,13 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
         $form = $this->createForm(LoginForm::class, [
-            '_username' => $authenticationUtils->getLastUsername(),
+            'username' => $authenticationUtils->getLastUsername(),
         ]);
 
         return $this->render('security/login.html.twig', [
             'form' => $form->createView(),
-            'error' => $error,
+            'error' => $authenticationUtils->getLastAuthenticationError(),
         ]);
     }
 
@@ -53,27 +51,26 @@ class SecurityController extends AbstractController
                              GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator,
                              AuthenticationUtils $authenticationUtils)
     {
-        // TODO - use Symfony forms & validation
-        if ($request->isMethod('POST')) {
-            $user = new User();
-            $user->setEmail($request->request->get('email'));
+        $user = new User();
+        $user->setEmail($authenticationUtils->getLastUsername());
 
-            $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
+        $form = $this->createForm(UserRegistrationForm::class, $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($passwordEncoder->encodePassword($user, $user->getPlainPassword()));
+
+            $this->getDoctrine()->getManager()->persist($user);
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'Bienvenue ' . $user->getUsername());
 
             return $guardHandler->authenticateUserAndHandleSuccess($user, $request, $formAuthenticator, 'main');
-
         }
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-
         return $this->render('security/register.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error,
+            'form' => $form->createView(),
+            'error' => $authenticationUtils->getLastAuthenticationError(),
         ]);
     }
 

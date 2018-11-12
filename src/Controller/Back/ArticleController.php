@@ -70,7 +70,7 @@ class ArticleController extends AbstractController
      * @Route("/edit/{id}", methods={"GET", "POST"})
      * @param Request $request
      * @param Article $article
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function edit(Request $request, Article $article): Response
     {
@@ -94,7 +94,7 @@ class ArticleController extends AbstractController
      * @Route("/delete/{id}", methods="GET")
      * @param Request $request
      * @param Article $article
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function delete(Request $request, Article $article): RedirectResponse
     {

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Tag
 {
     /**
+     * @var integer $id
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -17,20 +18,31 @@ class Tag
     private $id;
 
     /**
+     * @var string $name
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     * @return Tag
+     */
     public function setName(string $name): self
     {
         $this->name = $name;

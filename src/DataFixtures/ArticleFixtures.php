@@ -10,6 +10,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class ArticleFixtures extends Fixture implements DependentFixtureInterface
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $faker = \Faker\Factory::create();
@@ -28,10 +31,11 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
+    /**
+     * @return array
+     */
     public function getDependencies()
     {
-        return [
-            TagFixtures::class
-        ];
+        return [TagFixtures::class];
     }
 }

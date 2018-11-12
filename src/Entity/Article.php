@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Article
 {
     /**
-	 * @var integer
+	 * @var integer $id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue()
      * @ORM\Id
@@ -22,26 +22,26 @@ class Article
 	private $id;
 
     /**
-	 * @var string
+	 * @var string $title
      * @ORM\Column(type="string", length=100, unique=true)
      * @Assert\NotBlank(message="Veuillez choisir un titre !")
      */
 	private $title;
 
     /**
-	 * @var string
+	 * @var string $slug
      * @ORM\Column(type="string", nullable=true)
      */
 	private $slug = null;
 
     /**
-	 * @var string
+	 * @var string $content
      * @ORM\Column(type="text")
      */
 	private $content = "";
 
     /**
-     * @var Tag
+     * @var Tag $tags
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="articles", cascade={"persist"})
      */
     private $tags;

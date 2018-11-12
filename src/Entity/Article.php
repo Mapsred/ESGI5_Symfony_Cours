@@ -10,35 +10,36 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Article
  *
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
+ * @ORM\Table(name="article")
  */
 class Article
 {
     /**
-	 * @var integer $id
+     * @var integer $id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue()
-     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Id()
      */
-	private $id;
+    private $id;
 
     /**
-	 * @var string $title
+     * @var string $title
      * @ORM\Column(type="string", length=100, unique=true)
      * @Assert\NotBlank(message="Veuillez choisir un titre !")
      */
-	private $title;
+    private $title;
 
     /**
-	 * @var string $slug
+     * @var string $slug
      * @ORM\Column(type="string", nullable=true)
      */
-	private $slug = null;
+    private $slug = null;
 
     /**
-	 * @var string $content
+     * @var string $content
      * @ORM\Column(type="text")
      */
-	private $content = "";
+    private $content = "";
 
     /**
      * @var Tag $tags
@@ -62,7 +63,7 @@ class Article
     /**
      * @return string
      */
-    public function getTitle():? string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -75,6 +76,7 @@ class Article
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -91,9 +93,10 @@ class Article
      *
      * @return Article
      */
-    public function setSlug(string $slug):? self
+    public function setSlug(string $slug): ?self
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -113,6 +116,7 @@ class Article
     public function setContent(string $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 

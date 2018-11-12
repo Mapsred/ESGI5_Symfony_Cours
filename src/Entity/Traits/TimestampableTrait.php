@@ -3,20 +3,20 @@
 namespace App\Entity\Traits;
 
 
-use Gedmo\Mapping\Annotation\Timestampable;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 trait TimestampableTrait
 {
     /**
      * @var \DateTime $createdAt
-     * @Timestampable(on="create")
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     protected $createdAt;
 
     /**
      * @var \DateTime $updatedAt
-     * @Timestampable(on="update")
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
     protected $updatedAt;

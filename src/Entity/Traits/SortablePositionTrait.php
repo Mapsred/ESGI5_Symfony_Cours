@@ -3,14 +3,14 @@
 namespace App\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation\SortablePosition;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 trait SortablePositionTrait
 {
     /**
      * @var integer $position
-     * @SortablePosition
-     * @ORM\Column(type="integer", options={"default" : 1})
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="position", type="integer")
      */
     protected $position;
 

@@ -8,7 +8,7 @@ trait ArchivedTrait
 {
     /**
      * @var string $slug
-     * @ORM\Column(type="string", nullable=true, options={"default" : false})
+     * @ORM\Column(type="string", options={"default" : false})
      */
     protected $archived = false;
 

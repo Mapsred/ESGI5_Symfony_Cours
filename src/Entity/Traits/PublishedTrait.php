@@ -16,7 +16,7 @@ trait PublishedTrait
     /**
      * @return string
      */
-    public function isArchived(): ?string
+    public function isPublished(): ?string
     {
         return $this->published;
     }

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login!{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('build/signin.css') }}">
+{% endblock %}
+
+{% block body %}
+    <form class="form-signin" method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        {{ form_start(form) }}
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.password) }}
+        {{ form_errors(form.password) }}
+        <div class="checkbox mb-3">
+            {{ form_widget(form._remember_me) }}
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+        {{ form_end(form) }}
+
+    </form>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('build/signin.js') }}"></script>
+{% endblock %}

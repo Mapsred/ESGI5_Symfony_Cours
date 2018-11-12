@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -15,6 +16,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Article
 {
+    use ORMBehaviors\Blameable\Blameable,
+        ORMBehaviors\Timestampable\Timestampable;
+
     /**
      * @var integer $id
      * @ORM\Column(type="integer")
